@@ -1,0 +1,5 @@
+[package]
+
+name = "rust-kissfft"
+version = "0.0.1"
+authors = ["Star Brilliant <m13253@hotmail.com>"]

@@ -1,5 +1,7 @@
 [package]
 
 name = "rust-kissfft"
+description = "Rust binding for Kiss FFT"
 version = "0.0.1"
 authors = ["Star Brilliant <m13253@hotmail.com>"]
+license = "BSD-3-Clause"

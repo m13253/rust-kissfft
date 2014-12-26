@@ -4,6 +4,9 @@
 
 extern crate libc;
 
+#[static_assert]
+static USE_SIMD: bool = !cfg!(USE_SIMD); // USE_SIMD is not supported in this binding
+
 #[cfg(FIXED_POINT = "32")]
 pub type kiss_fft_scalar = i32;
 #[cfg(all(FIXED_POINT, not(FIXED_POINT = "32")))]

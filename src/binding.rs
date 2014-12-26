@@ -32,8 +32,8 @@ extern {
     pub fn kiss_fft_next_fast_size(n: libc::c_int) -> libc::c_int;
 }
 
-pub unsafe fn kiss_fft_free(mem: *mut libc::c_void) {
-    libc::free(mem)
+pub unsafe fn kiss_fft_free(cfg: kiss_fft_cfg) {
+    libc::free(cfg as *mut libc::c_void)
 }
 
 pub unsafe fn kiss_fftr_next_fast_size_real(n: libc::c_int) -> libc::c_int {

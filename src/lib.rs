@@ -22,7 +22,7 @@ impl KissFFT {
             nfft: nfft
         }
     }
-    pub fn run(&mut self, fin: &[Complex], fout: &mut [Complex]) {
+    pub fn transform(&mut self, fin: &[Complex], fout: &mut [Complex]) {
         debug_assert!(fin.len() >= self.nfft);
         debug_assert!(fout.len() >= self.nfft);
         assert!(self.cfg != std::ptr::null_mut());

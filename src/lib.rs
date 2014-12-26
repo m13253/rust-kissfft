@@ -13,17 +13,19 @@ pub struct KissFFT {
 
 impl KissFFT {
     pub fn new(nfft: uint, inverse_fft: bool) -> KissFFT {
+        let cfg = unsafe {
+            binding::kiss_fft_alloc(nfft as libc::c_int, inverse_fft as libc::c_int, std::ptr::null_mut(), std::ptr::null_mut())
+        };
+        assert!(cfg != std::ptr::null_mut());
         KissFFT {
-            cfg: unsafe {
-                binding::kiss_fft_alloc(nfft as libc::c_int, inverse_fft as libc::c_int, std::ptr::null_mut(), std::ptr::null_mut())
-            },
+            cfg: cfg,
             nfft: nfft
         }
     }
     pub fn run(&mut self, fin: &[Complex], fout: &mut [Complex]) {
+        debug_assert!(fin.len() >= self.nfft);
+        debug_assert!(fout.len() >= self.nfft);
         assert!(self.cfg != std::ptr::null_mut());
-        assert!(fin.len() >= self.nfft);
-        assert!(fout.len() >= self.nfft);
         unsafe {
             binding::kiss_fft(self.cfg, fin.as_ptr(), fout.as_mut_ptr())
         }
@@ -38,4 +40,3 @@ impl Drop for KissFFT {
         self.cfg = std::ptr::null_mut();
     }
 }
-

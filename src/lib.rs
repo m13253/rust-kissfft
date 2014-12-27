@@ -23,8 +23,8 @@ impl KissFFT {
         }
     }
     pub fn transform(&mut self, fin: &[Complex], fout: &mut [Complex]) {
-        debug_assert!(fin.len() >= self.nfft);
-        debug_assert!(fout.len() >= self.nfft);
+        assert!(fin.len() >= self.nfft);
+        assert!(fout.len() >= self.nfft);
         assert!(self.cfg != std::ptr::null_mut());
         unsafe {
             binding::kiss_fft(self.cfg, fin.as_ptr(), fout.as_mut_ptr())

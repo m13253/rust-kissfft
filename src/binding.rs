@@ -30,12 +30,9 @@ extern {
     pub fn kiss_fft_alloc(nfft: libc::c_int, inverse_fft: libc::c_int, mem: *mut libc::c_void, lenmem: *mut libc::size_t) -> kiss_fft_cfg;
     pub fn kiss_fft(cfg: kiss_fft_cfg, fin: *const kiss_fft_cpx, fout: *mut kiss_fft_cpx);
     pub fn kiss_fft_stride(cfg: kiss_fft_cfg, fin: *const kiss_fft_cpx, fout: *mut kiss_fft_cpx, fin_stride: libc::c_int);
+    pub fn kiss_fft_free(cfg: kiss_fft_cfg);
     pub fn kiss_fft_cleanup();
     pub fn kiss_fft_next_fast_size(n: libc::c_int) -> libc::c_int;
-}
-
-pub unsafe fn kiss_fft_free(cfg: kiss_fft_cfg) {
-    libc::free(cfg as *mut libc::c_void)
 }
 
 pub unsafe fn kiss_fftr_next_fast_size_real(n: libc::c_int) -> libc::c_int {

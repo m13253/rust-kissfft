@@ -13,16 +13,16 @@ pub type kiss_fft_scalar = i16;
 #[cfg(not(FIXED_POINT))]
 pub type kiss_fft_scalar = f32;
 
+#[deriving(Clone, Copy)]
 #[repr(C)]
 pub struct kiss_fft_cpx {
-    r: kiss_fft_scalar,
-    i: kiss_fft_scalar
+    pub r: kiss_fft_scalar,
+    pub i: kiss_fft_scalar
 }
-impl Copy for kiss_fft_cpx {}
 
+#[deriving(Copy)]
 #[repr(C)]
 pub struct kiss_fft_state;
-impl Copy for kiss_fft_state {}
 pub type kiss_fft_cfg = *mut kiss_fft_state;
 
 #[link = "kissfft"]

@@ -13,7 +13,7 @@ fn main() {
     };
     let compile_object = |filename: &str|
         std::io::Command::new(&cc)
-            .args(&[String::from_str("-c"), String::from_str("-o"), format!("{}/{}.o", out_dir, filename), format!("src/{}.c", filename)])
+            .args(&[String::from_str("-c"), String::from_str("-fPIC"), String::from_str("-o"), format!("{}/{}.o", out_dir, filename), format!("src/{}.c", filename)])
             .stdin(std::io::process::InheritFd(0)).stdout(std::io::process::InheritFd(1)).stderr(std::io::process::InheritFd(2))
             .status();
     let objects = ["kiss_fft", "kiss_fft_free"];

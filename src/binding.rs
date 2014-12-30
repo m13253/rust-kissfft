@@ -13,7 +13,7 @@ pub type kiss_fft_scalar = i16;
 #[cfg(not(FIXED_POINT))]
 pub type kiss_fft_scalar = f32;
 
-#[deriving(Clone, Copy)]
+#[deriving(Clone, Copy, Show)]
 #[repr(C)]
 pub struct kiss_fft_cpx {
     pub r: kiss_fft_scalar,

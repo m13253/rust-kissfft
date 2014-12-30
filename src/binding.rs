@@ -1,9 +1,8 @@
-
-#![allow(dead_code)]
-#![allow(non_camel_case_types)] // Use the same spelling as the C header
+#![allow(non_camel_case_types)]
 
 extern crate libc;
 
+#[allow(dead_code)]
 #[static_assert]
 static USE_SIMD: bool = !cfg!(USE_SIMD); // USE_SIMD is not supported in this binding
 

@@ -1,4 +1,3 @@
-
 fn main() {
     let out_dir = match std::os::getenv("OUT_DIR") {
         Some(out_dir) => out_dir,

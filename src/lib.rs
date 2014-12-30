@@ -1,4 +1,3 @@
-
 extern crate libc;
 
 pub mod binding;

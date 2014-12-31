@@ -5,4 +5,6 @@ description = "Rust binding for Kiss FFT"
 version = "0.0.1"
 authors = ["Star Brilliant <m13253@hotmail.com>"]
 license = "BSD-3-Clause"
+homepage = "http://kissfft.sourceforge.net/"
+repository = "https://github.com/m13253/rust-kissfft"
 build = "build.rs"

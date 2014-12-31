@@ -1,6 +1,6 @@
 [package]
 
-name = "rust-kissfft"
+name = "kissfft"
 description = "Rust binding for Kiss FFT"
 version = "0.0.1"
 authors = ["Star Brilliant <m13253@hotmail.com>"]

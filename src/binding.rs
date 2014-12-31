@@ -36,5 +36,5 @@ extern {
 }
 
 pub unsafe fn kiss_fftr_next_fast_size_real(n: libc::c_int) -> libc::c_int {
-    kiss_fft_next_fast_size(((n+(1i as libc::c_int))>>1u)<<1u)
+    kiss_fft_next_fast_size(((n+1)>>1u)<<1u)
 }

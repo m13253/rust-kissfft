@@ -50,7 +50,7 @@ impl KissFFT {
     pub fn transform_to_vec(&mut self, fin: &[Complex]) -> Vec<Complex> {
         assert!(fin.len() >= self.nfft);
         assert!(self.cfg != std::ptr::null_mut());
-        let mut result = Vec::from_elem(self.nfft, Complex {r: 0., i: 0.});
+        let mut result = std::iter::repeat(Complex {r: 0., i: 0.}).take(self.nfft).collect::<Vec<Complex>>();
         self.transform(fin, result.as_mut_slice());
         result
     }

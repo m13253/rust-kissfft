@@ -78,22 +78,23 @@ impl Drop for KissFFT {
         self.cfg = std::ptr::null_mut();
     }
 }
-impl Add<Complex, Complex> for Complex {
+impl std::ops::Add for Complex {
+    type Output = Complex;
     fn add(self, other: Complex) -> Complex {
         Complex { r: self.r + other.r, i: self.i + other.i }
     }
 }
-impl Sub<Complex, Complex> for Complex {
+impl std::ops::Sub for Complex {
     fn sub(self, other: Complex) -> Complex {
         Complex { r: self.r - other.r, i: self.i - other.i }
     }
 }
-impl Neg<Complex> for Complex {
+impl std::ops::Neg for Complex {
     fn neg(self) -> Complex {
         Complex { r: -self.r, i: -self.i }
     }
 }
-impl Mul<Complex, Complex> for Complex {
+impl std::ops::Mul for Complex {
     fn mul(self, other: Complex) -> Complex {
         Complex {
             r: self.r*other.r - self.i*other.i,
@@ -101,12 +102,12 @@ impl Mul<Complex, Complex> for Complex {
         }
     }
 }
-impl Mul<Scalar, Complex> for Complex {
+impl std::ops::Mul<Scalar> for Complex {
     fn mul(self, other: Scalar) -> Complex {
         Complex { r: self.r*other, i: self.i*other }
     }
 }
-impl Div<Complex, Complex> for Complex {
+impl std::ops::Div for Complex {
     fn div(self, other: Complex) -> Complex {
         let denominator = other.r*other.r - other.i*other.i;
         Complex {
@@ -115,7 +116,7 @@ impl Div<Complex, Complex> for Complex {
         }
     }
 }
-impl Div<Scalar, Complex> for Complex {
+impl std::ops::Div<Scalar> for Complex {
     fn div(self, other: Scalar) -> Complex {
         Complex { r: self.r/other, i: self.i/other }
     }

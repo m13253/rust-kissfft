@@ -85,16 +85,19 @@ impl std::ops::Add for Complex {
     }
 }
 impl std::ops::Sub for Complex {
+    type Output = Complex;
     fn sub(self, other: Complex) -> Complex {
         Complex { r: self.r - other.r, i: self.i - other.i }
     }
 }
 impl std::ops::Neg for Complex {
+    type Output = Complex;
     fn neg(self) -> Complex {
         Complex { r: -self.r, i: -self.i }
     }
 }
 impl std::ops::Mul for Complex {
+    type Output = Complex;
     fn mul(self, other: Complex) -> Complex {
         Complex {
             r: self.r*other.r - self.i*other.i,
@@ -103,11 +106,13 @@ impl std::ops::Mul for Complex {
     }
 }
 impl std::ops::Mul<Scalar> for Complex {
+    type Output = Complex;
     fn mul(self, other: Scalar) -> Complex {
         Complex { r: self.r*other, i: self.i*other }
     }
 }
 impl std::ops::Div for Complex {
+    type Output = Complex;
     fn div(self, other: Complex) -> Complex {
         let denominator = other.r*other.r - other.i*other.i;
         Complex {
@@ -117,6 +122,7 @@ impl std::ops::Div for Complex {
     }
 }
 impl std::ops::Div<Scalar> for Complex {
+    type Output = Complex;
     fn div(self, other: Scalar) -> Complex {
         Complex { r: self.r/other, i: self.i/other }
     }

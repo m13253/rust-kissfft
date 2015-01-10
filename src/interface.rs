@@ -22,12 +22,12 @@ pub type Complex = binding::kiss_fft_cpx;
 
 pub struct KissFFT {
     cfg: binding::kiss_fft_cfg,
-    nfft: uint,
+    nfft: usize,
     nfft_rsqrt: Scalar
 }
 
 impl KissFFT {
-    pub fn new(nfft: uint, inverse_fft: bool) -> KissFFT {
+    pub fn new(nfft: usize, inverse_fft: bool) -> KissFFT {
         let cfg = unsafe {
             binding::kiss_fft_alloc(nfft as libc::c_int, inverse_fft as libc::c_int, std::ptr::null_mut(), std::ptr::null_mut())
         };
@@ -76,6 +76,16 @@ impl Drop for KissFFT {
             binding::kiss_fft_free(self.cfg);
         }
         self.cfg = std::ptr::null_mut();
+    }
+}
+impl Complex {
+    pub fn new(r: Scalar, i: Scalar) -> Complex {
+        Complex { r: r, i: i }
+    }
+}
+impl std::fmt::String for Complex {
+    fn fmt(&self, formatter: &mut std::fmt::Formatter) -> Result<(), std::fmt::Error> {
+        formatter.pad(format!("{}{:+}i", self.r, self.i).as_slice())
     }
 }
 impl std::ops::Add for Complex {
@@ -129,9 +139,9 @@ impl std::ops::Div<Scalar> for Complex {
 }
 impl Complex {
     pub fn abs(self) -> Scalar {
-        std::num::FloatMath::hypot(self.r, self.i)
+        std::num::Float::hypot(self.r, self.i)
     }
     pub fn arg(self) -> Scalar {
-        std::num::FloatMath::atan2(self.i, self.r)
+        std::num::Float::atan2(self.i, self.r)
     }
 }

@@ -13,18 +13,9 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 */
 
 fn main() {
-    let out_dir = match std::os::getenv("OUT_DIR") {
-        Some(out_dir) => out_dir,
-        None          => ".".to_string()
-    };
-    let cc = match std::os::getenv("CC") {
-        Some(cc) => cc,
-        None     => "gcc".to_string()
-    };
-    let ar = match std::os::getenv("AR") {
-        Some(ar) => ar,
-        None     => "ar".to_string()
-    };
+    let out_dir = std::os::getenv("OUT_DIR").unwrap_or_else(|| ".".to_string());
+    let cc = std::os::getenv("CC").unwrap_or_else(|| "gcc".to_string());
+    let ar = std::os::getenv("AR").unwrap_or_else(|| "ar".to_string());
     let compile_object = |&: filename: &str|
         std::io::Command::new(&cc)
             .args(&["-c".to_string(), "-fPIC".to_string(), "-o".to_string(), format!("{}/{}.o", out_dir, filename), format!("src/{}.c", filename)])

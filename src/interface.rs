@@ -85,7 +85,7 @@ impl Complex {
 }
 impl std::fmt::String for Complex {
     fn fmt(&self, formatter: &mut std::fmt::Formatter) -> Result<(), std::fmt::Error> {
-        formatter.pad(format!("{}{:+}i", self.r, self.i).as_slice())
+        formatter.pad(&*format!("{}{:+}i", self.r, self.i))
     }
 }
 impl std::ops::Add for Complex {

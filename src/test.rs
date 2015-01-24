@@ -23,8 +23,8 @@ fn test_random_fft() {
     let mut kiss_fft = interface::KissFFT::new(nfft, false);
     let mut kiss_ifft = interface::KissFFT::new(nfft, true);
     let fin = std::iter::repeat(()).map(|_| interface::Complex::new(std::rand::random::<interface::Scalar>()*2.-1., std::rand::random::<interface::Scalar>()*2.-1.)).take(nfft).collect::<Vec<interface::Complex>>();
-    let fout_fft = kiss_fft.transform_norm_to_vec(fin.as_slice());
-    let fout_ifft = kiss_ifft.transform_norm_to_vec(fout_fft.as_slice());
+    let fout_fft = kiss_fft.transform_norm_to_vec(&*fin);
+    let fout_ifft = kiss_ifft.transform_norm_to_vec(&*fout_fft);
     println!("\nIN   = [\n{}\n]", fin.iter().map(|x: &interface::Complex| format!("    {}", x)).collect::<Vec<String>>().connect(",\n"));
     println!("\nFFT  = [\n{}\n]", fout_fft.iter().map(|x: &interface::Complex| format!("    {}", x)).collect::<Vec<String>>().connect(",\n"));
     println!("\nIFFT = [\n{}\n]", fout_ifft.iter().map(|x: &interface::Complex| format!("    {}", x)).collect::<Vec<String>>().connect(",\n"));

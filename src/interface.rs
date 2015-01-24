@@ -83,7 +83,7 @@ impl Complex {
         Complex { r: r, i: i }
     }
 }
-impl std::fmt::String for Complex {
+impl std::fmt::Display for Complex {
     fn fmt(&self, formatter: &mut std::fmt::Formatter) -> Result<(), std::fmt::Error> {
         formatter.pad(&*format!("{}{:+}i", self.r, self.i))
     }

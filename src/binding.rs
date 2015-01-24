@@ -19,7 +19,7 @@ extern crate libc;
 
 #[allow(dead_code)]
 #[static_assert]
-static USE_SIMD: bool = !cfg!(USE_SIMD); // USE_SIMD is not supported in this binding
+const USE_SIMD: bool = !cfg!(USE_SIMD); // USE_SIMD is not supported in this binding
 
 #[cfg(FIXED_POINT = "32")]
 pub type kiss_fft_scalar = i32;

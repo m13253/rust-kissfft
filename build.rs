@@ -17,19 +17,19 @@ fn main() {
     let cc = std::os::getenv("CC").unwrap_or_else(|| "gcc".to_string());
     let ar = std::os::getenv("AR").unwrap_or_else(|| "ar".to_string());
     let compile_object = |&: filename: &str|
-        std::io::Command::new(&cc)
+        std::old_io::Command::new(&cc)
             .args(&["-c".to_string(), "-fPIC".to_string(), "-o".to_string(), format!("{}/{}.o", out_dir, filename), format!("src/{}.c", filename)])
-            .stdin(std::io::process::InheritFd(0)).stdout(std::io::process::InheritFd(1)).stderr(std::io::process::InheritFd(2))
+            .stdin(std::old_io::process::InheritFd(0)).stdout(std::old_io::process::InheritFd(1)).stderr(std::old_io::process::InheritFd(2))
             .status();
     let objects = ["kiss_fft", "kiss_fft_free"];
     for object in objects.iter() {
         assert!(compile_object(*object).unwrap().success());
     }
     let create_archive = |&: archive: &str, objects: &[&str]| {
-        std::io::Command::new(&ar)
+        std::old_io::Command::new(&ar)
             .args(&["crs", &*format!("{}/lib{}.a", out_dir, archive)])
             .args(&*objects.iter().map(|object: &&str| -> String format!("{}/{}.o", out_dir, *object)).collect::<Vec<String>>())
-            .stdin(std::io::process::InheritFd(0)).stdout(std::io::process::InheritFd(1)).stderr(std::io::process::InheritFd(2))
+            .stdin(std::old_io::process::InheritFd(0)).stdout(std::old_io::process::InheritFd(1)).stderr(std::old_io::process::InheritFd(2))
             .status()
     };
     assert!(create_archive("kissfft", &objects).unwrap().success());

@@ -35,7 +35,6 @@ pub struct kiss_fft_cpx {
     pub i: kiss_fft_scalar
 }
 
-#[derive(Copy)]
 #[repr(C)]
 pub struct kiss_fft_state;
 pub type kiss_fft_cfg = *mut kiss_fft_state;

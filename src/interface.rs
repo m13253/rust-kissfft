@@ -50,8 +50,10 @@ impl KissFFT {
     pub fn transform_to_vec(&mut self, fin: &[Complex]) -> Vec<Complex> {
         assert!(fin.len() >= self.nfft);
         assert!(self.cfg != std::ptr::null_mut());
-        let mut result = std::iter::repeat(Complex {r: 0., i: 0.}).take(self.nfft).collect::<Vec<Complex>>();
-        self.transform(fin, result.as_mut_slice());
+        let mut result = std::iter::repeat(Complex::new(0., 0.)).take(self.nfft).collect::<Vec<Complex>>();
+        unsafe {
+            binding::kiss_fft(self.cfg, fin.as_ptr(), result.as_mut_ptr())
+        }
         result
     }
     pub fn transform_norm<'a>(&'a mut self, fin: &[Complex], fout: &mut [Complex]) -> &'a mut KissFFT {

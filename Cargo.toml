@@ -2,7 +2,7 @@
 
 name = "kissfft"
 description = "Rust binding for Kiss FFT"
-version = "0.0.7"
+version = "0.0.8"
 authors = ["Star Brilliant <m13253@hotmail.com>"]
 license = "BSD-3-Clause"
 homepage = "http://kissfft.sourceforge.net/"

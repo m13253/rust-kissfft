@@ -13,12 +13,16 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 */
 
 fn main() {
+/* Note:
+   The GCC crate ( https://crates.io/crates/gcc ) is currently somewhat buggy,
+   I will switch to it only when it is stable enough. */
     let out_dir = std::os::getenv("OUT_DIR").unwrap_or_else(|| ".".to_string());
     let cc = std::os::getenv("CC").unwrap_or_else(|| "gcc".to_string());
     let ar = std::os::getenv("AR").unwrap_or_else(|| "ar".to_string());
     let compile_object = |&: filename: &str|
         std::old_io::Command::new(&cc)
-            .args(&["-c".to_string(), "-fPIC".to_string(), "-o".to_string(), format!("{}/{}.o", out_dir, filename), format!("src/{}.c", filename)])
+            .args(&["-c", "-fPIC", "-O3", "-Wall", "-o"])
+            .args(&[format!("{}/{}.o", out_dir, filename), format!("src/{}.c", filename)])
             .stdin(std::old_io::process::InheritFd(0)).stdout(std::old_io::process::InheritFd(1)).stderr(std::old_io::process::InheritFd(2))
             .status();
     let objects = ["kiss_fft", "kiss_fft_free"];

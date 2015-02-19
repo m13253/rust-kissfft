@@ -18,7 +18,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
  fixed or floating point complex numbers.  It also delares the kf_ internal functions.
  */
 
-static void kf_bfly2(
+void kf_bfly2(
         kiss_fft_cpx * Fout,
         const size_t fstride,
         const kiss_fft_cfg st,
@@ -41,7 +41,7 @@ static void kf_bfly2(
     }while (--m);
 }
 
-static void kf_bfly4(
+void kf_bfly4(
         kiss_fft_cpx * Fout,
         const size_t fstride,
         const kiss_fft_cfg st,
@@ -89,7 +89,7 @@ static void kf_bfly4(
     }while(--k);
 }
 
-static void kf_bfly3(
+void kf_bfly3(
          kiss_fft_cpx * Fout,
          const size_t fstride,
          const kiss_fft_cfg st,
@@ -133,7 +133,7 @@ static void kf_bfly3(
      }while(--k);
 }
 
-static void kf_bfly5(
+void kf_bfly5(
         kiss_fft_cpx * Fout,
         const size_t fstride,
         const kiss_fft_cfg st,
@@ -195,7 +195,7 @@ static void kf_bfly5(
 }
 
 /* perform the butterfly for one stage of a mixed radix FFT */
-static void kf_bfly_generic(
+void kf_bfly_generic(
         kiss_fft_cpx * Fout,
         const size_t fstride,
         const kiss_fft_cfg st,
@@ -234,7 +234,6 @@ static void kf_bfly_generic(
     KISS_FFT_TMP_FREE(scratch);
 }
 
-static
 void kf_work(
         kiss_fft_cpx * Fout,
         const kiss_fft_cpx * f,
@@ -305,7 +304,6 @@ void kf_work(
     where 
     p[i] * m[i] = m[i-1]
     m0 = n                  */
-static 
 void kf_factor(int n,int * facbuf)
 {
     int p=4;

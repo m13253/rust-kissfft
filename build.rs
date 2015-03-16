@@ -19,7 +19,7 @@ fn main() {
     let out_dir = std::os::getenv("OUT_DIR").unwrap_or_else(|| ".".to_string());
     let cc = std::os::getenv("CC").unwrap_or_else(|| "gcc".to_string());
     let ar = std::os::getenv("AR").unwrap_or_else(|| "ar".to_string());
-    let compile_object = |&: filename: &str|
+    let compile_object = |filename: &str|
         std::old_io::Command::new(&cc)
             .args(&["-c", "-fPIC", "-O3", "-Wall", "-o"])
             .args(&[format!("{}/{}.o", out_dir, filename), format!("src/{}.c", filename)])
@@ -29,7 +29,7 @@ fn main() {
     for object in objects.iter() {
         assert!(compile_object(*object).unwrap().success());
     }
-    let create_archive = |&: archive: &str, objects: &[&str]| {
+    let create_archive = |archive: &str, objects: &[&str]| {
         std::old_io::Command::new(&ar)
             .args(&["crs", &*format!("{}/lib{}.a", out_dir, archive)])
             .args(&*objects.iter().map(|object: &&str| -> String format!("{}/{}.o", out_dir, *object)).collect::<Vec<String>>())

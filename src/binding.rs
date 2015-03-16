@@ -18,7 +18,6 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 extern crate libc;
 
 #[allow(dead_code)]
-#[static_assert]
 const USE_SIMD: bool = !cfg!(USE_SIMD); // USE_SIMD is not supported in this binding
 
 #[cfg(FIXED_POINT = "32")]

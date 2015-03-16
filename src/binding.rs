@@ -47,6 +47,9 @@ extern {
     pub fn kiss_fft_cleanup();
     pub fn kiss_fft_next_fast_size(n: libc::c_int) -> libc::c_int;
     pub fn kf_bfly2(fout: *mut kiss_fft_cpx, fstride: libc::size_t, cfg: kiss_fft_cfg, m: libc::c_int);
+    pub fn kf_bfly3(fout: *mut kiss_fft_cpx, fstride: libc::size_t, cfg: kiss_fft_cfg, m: libc::c_int);
+    pub fn kf_bfly4(fout: *mut kiss_fft_cpx, fstride: libc::size_t, cfg: kiss_fft_cfg, m: libc::c_int);
+    pub fn kf_bfly5(fout: *mut kiss_fft_cpx, fstride: libc::size_t, cfg: kiss_fft_cfg, m: libc::c_int);
 }
 
 pub unsafe fn kiss_fftr_next_fast_size_real(n: libc::c_int) -> libc::c_int {

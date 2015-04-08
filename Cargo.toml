@@ -10,5 +10,8 @@ repository = "https://github.com/m13253/rust-kissfft"
 keywords = ["FFT", "signal"]
 build = "build.rs"
 
+[dependencies]
+libc = "*"
+
 [build-dependencies]
 gcc = "*"

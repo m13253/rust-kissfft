@@ -12,6 +12,7 @@ build = "build.rs"
 
 [dependencies]
 libc = "*"
+num = "*"
 
 [build-dependencies]
 gcc = "*"

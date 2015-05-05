@@ -13,6 +13,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 */
 
 extern crate libc;
+extern crate core;
 
 use std;
 use binding;
@@ -35,7 +36,7 @@ impl KissFFT {
         KissFFT {
             cfg: cfg,
             nfft: nfft,
-            nfft_rsqrt: std::num::Float::rsqrt(nfft as Scalar)
+            nfft_rsqrt: core::num::Float::rsqrt(nfft as Scalar)
         }
     }
     pub fn transform<'a>(&'a mut self, fin: &[Complex], fout: &mut [Complex]) -> &'a mut KissFFT {
@@ -141,9 +142,9 @@ impl std::ops::Div<Scalar> for Complex {
 }
 impl Complex {
     pub fn abs(self) -> Scalar {
-        std::num::Float::hypot(self.r, self.i)
+        self.r.hypot(self.i)
     }
     pub fn arg(self) -> Scalar {
-        std::num::Float::atan2(self.i, self.r)
+        self.i.atan2(self.r)
     }
 }

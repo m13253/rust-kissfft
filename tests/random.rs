@@ -15,13 +15,14 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 #![cfg(test)]
 
 extern crate kissfft;
+extern crate rand;
 
 #[test]
 fn test_random_fft() {
     let nfft = 1024;
     let mut kiss_fft = kissfft::KissFFT::new(nfft, false);
     let mut kiss_ifft = kissfft::KissFFT::new(nfft, true);
-    let fin = std::iter::repeat(()).map(|_| kissfft::interface::Complex::new(std::rand::random::<kissfft::Scalar>()*2.-1., std::rand::random::<kissfft::Scalar>()*2.-1.)).take(nfft).collect::<Vec<kissfft::Complex>>();
+    let fin = std::iter::repeat(()).map(|_| kissfft::interface::Complex::new(rand::random::<kissfft::Scalar>()*2.-1., rand::random::<kissfft::Scalar>()*2.-1.)).take(nfft).collect::<Vec<kissfft::Complex>>();
     let fout_fft = kiss_fft.transform_norm_to_vec(&*fin);
     let fout_ifft = kiss_ifft.transform_norm_to_vec(&*fout_fft);
     println!("\nIN   = [\n{}\n]", fin.iter().map(|x: &kissfft::Complex| format!("    {}", x)).collect::<Vec<String>>().connect(",\n"));

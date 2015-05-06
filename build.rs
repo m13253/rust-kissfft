@@ -42,5 +42,5 @@ fn main() {
             .status()
     };
     assert!(create_archive("kissfft", &objects).unwrap().success());
-    println!("cargo:rustc-flags=-L {} -l kissfft:static", out_dir);
+    println!("cargo:rustc-flags=-L {}", out_dir);
 }

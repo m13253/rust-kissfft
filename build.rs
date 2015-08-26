@@ -21,9 +21,9 @@ fn main() {
 /* Note:
    The GCC crate ( https://crates.io/crates/gcc ) is currently somewhat buggy,
    I will switch to it only when it is stable enough. */
-    let out_dir = std::env::var("OUT_DIR").unwrap_or(String::from_str("."));
-    let cc = std::env::var("CC").unwrap_or(String::from_str("gcc"));
-    let ar = std::env::var("AR").unwrap_or(String::from_str("ar"));
+    let out_dir = std::env::var("OUT_DIR").unwrap_or(String::from("."));
+    let cc = std::env::var("CC").unwrap_or(String::from("gcc"));
+    let ar = std::env::var("AR").unwrap_or(String::from("ar"));
     let compile_object = |filename: &str|
         std::process::Command::new(&cc)
             .args(&["-c", "-fPIC", "-O3", "-Wall", "-o"])

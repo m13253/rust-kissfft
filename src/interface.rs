@@ -36,7 +36,7 @@ impl KissFFT {
         KissFFT {
             cfg: cfg,
             nfft: nfft,
-            nfft_rsqrt: core::num::Float::rsqrt(nfft as Scalar)
+            nfft_rsqrt: 1. / (nfft as Scalar).sqrt()
         }
     }
     pub fn transform<'a>(&'a mut self, fin: &[Complex], fout: &mut [Complex]) -> &'a mut KissFFT {

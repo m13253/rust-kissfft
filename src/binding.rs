@@ -35,7 +35,6 @@ pub struct kiss_fft_state;
 #[cfg(not(USE_SIMD))]
 pub type kiss_fft_cfg = *mut kiss_fft_state;
 
-#[link(name = "kissfft")]
 extern {
     pub fn kiss_fft_alloc(nfft: libc::c_int, inverse_fft: libc::c_int, mem: *mut libc::c_void, lenmem: *mut libc::size_t) -> kiss_fft_cfg;
     pub fn kiss_fft(cfg: kiss_fft_cfg, fin: *const kiss_fft_cpx, fout: *mut kiss_fft_cpx);
